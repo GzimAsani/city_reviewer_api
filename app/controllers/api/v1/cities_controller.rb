@@ -1,6 +1,7 @@
 class Api::V1::CitiesController < ApplicationController
   before_action :set_city, only: [:show, :update, :destroy]
 
+  protect_from_forgery with: :null_session
   # GET /cities
   def index
     @cities = City.all
@@ -41,7 +42,7 @@ class Api::V1::CitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_city
-      @city = City.find(params[:id])
+      @city = City.find_by(slug: params[:slug])
     end
 
     # Only allow a list of trusted parameters through.
