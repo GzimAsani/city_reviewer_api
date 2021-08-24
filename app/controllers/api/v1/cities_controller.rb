@@ -1,7 +1,8 @@
 class Api::V1::CitiesController < ApplicationController
   before_action :set_city, only: [:show, :update, :destroy]
 
-  protect_from_forgery with: :null_session
+
+
   # GET /cities
   def index
     @cities = City.all

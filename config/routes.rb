@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
+  root 'pages#index'
+
   namespace :api do
     namespace :v1 do
       resources :cities, param: :slug
-      
-      resources :reviews, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy, :show]
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '*path', to: 'pages#index', via: :all  
 end
