@@ -7,12 +7,12 @@ class Api::V1::CitiesController < ApplicationController
   def index
     @cities = City.all
 
-    render json: @cities
+    render json: CitySerializer.new(@cities, options).serialized_json
   end
 
   # GET /cities/1
   def show
-    render json: @city
+    render json: CitySerializer.new(@city, options).serialized_json
   end
 
   # POST /cities
@@ -20,7 +20,7 @@ class Api::V1::CitiesController < ApplicationController
     @city = City.new(city_params)
 
     if @city.save
-      render json: @city, status: :created, location: @city
+      render json: CitySerializer.new(@city).serialized_json
     else
       render json: @city.errors, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class Api::V1::CitiesController < ApplicationController
   # PATCH/PUT /cities/1
   def update
     if @city.update(city_params)
-      render json: @city
+      render json: CitySerializer.new(@city, options).serialized_json
     else
       render json: @city.errors, status: :unprocessable_entity
     end
@@ -49,5 +49,9 @@ class Api::V1::CitiesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def city_params
       params.require(:city).permit(:name, :image_url, :slug)
+    end
+
+    def options
+      @options ||= { include: %i[reviews] }
     end
 end
