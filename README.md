@@ -14,10 +14,10 @@ City Reviewer backend creates necessary API for the frontend
 
 ```bash
 # Clone the repo
-git clone https://github.com/GzimAsani/city_reviewer_api.git
+git clone https://github.com/GzimAsani/city_reviewer_api.git/
 
 # cd into the cloned repo
-cd track-books-api
+cd city_reviewer_api
 ```
 
 ### Install

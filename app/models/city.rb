@@ -1,5 +1,5 @@
 class City < ApplicationRecord
-  has_many  :reviews
+  has_many :reviews
 
   before_create :slugify
 

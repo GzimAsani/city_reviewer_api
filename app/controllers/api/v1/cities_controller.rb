@@ -1,7 +1,5 @@
 class Api::V1::CitiesController < ApplicationController
-  before_action :set_city, only: [:show, :update, :destroy]
-
-
+  before_action :set_city, only: %i[show update destroy]
 
   # GET /cities
   def index
@@ -41,17 +39,18 @@ class Api::V1::CitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_city
-      @city = City.find_by(slug: params[:slug])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def city_params
-      params.require(:city).permit(:name, :image_url, :slug)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_city
+    @city = City.find_by(slug: params[:slug])
+  end
 
-    def options
-      @options ||= { include: %i[reviews] }
-    end
+  # Only allow a list of trusted parameters through.
+  def city_params
+    params.require(:city).permit(:name, :image_url, :slug)
+  end
+
+  def options
+    @options ||= { include: %i[reviews] }
+  end
 end

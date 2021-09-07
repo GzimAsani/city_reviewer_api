@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :city do
-    name { "Fake City" }
+    name { 'Fake City' }
   end
 end
