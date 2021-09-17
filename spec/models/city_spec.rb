@@ -1,18 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe City, type: :model do
-  subject { City.new(name: "Prishtina", image_url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Prishtina_Collage.jpg",  ) }
-  
-  before {subject.save}
+  subject do
+    City.new(name: 'Prishtina', image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Prishtina_Collage.jpg')
+  end
 
-  it "should be present" do
+  before { subject.save }
+
+  it 'should be present' do
     subject.name = nil
-    
+
     expect(subject).to_not be_valid
   end
 
-  describe "flowers API", type: :request do
-    it "returns all flowers" do
+  describe 'flowers API', type: :request do
+    it 'returns all flowers' do
       get '/api/v1/cities'
 
       expect(response).to have_http_status(:success)

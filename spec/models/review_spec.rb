@@ -1,11 +1,11 @@
 RSpec.describe City, type: :model do
-  subject { Review.new(title: "Prishtina", description: "blabla", score: 4, city_id: 1  ) }
-  
-  before {subject.save}
+  subject { Review.new(title: 'Prishtina', description: 'blabla', score: 4, city_id: 1) }
 
-  it "should be present" do
+  before { subject.save }
+
+  it 'should be present' do
     subject.title = nil
-    
+
     expect(subject).to_not be_valid
   end
 
@@ -39,7 +39,7 @@ RSpec.describe City, type: :model do
 
   context 'validation test' do
     it 'Reviews return true if the everything is  provided' do
-      city = Review.new(title: 'last', description: "yes", score: 1, city_id: 1).save
+      city = Review.new(title: 'last', description: 'yes', score: 1, city_id: 1).save
       expect(city).to_not eq(true)
     end
   end
@@ -49,5 +49,4 @@ RSpec.describe City, type: :model do
       expect(Review.reflect_on_association(:city).macro).to be :belongs_to
     end
   end
-
 end
